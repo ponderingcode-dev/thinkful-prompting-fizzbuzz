@@ -1,16 +1,20 @@
 $(document).ready(function() {
-    main();
+    var userVal = promptForEndingValue();
+    main(userVal);
 });
 
-function main() {
+function main(endVal) {
+    while (0 >= endVal) {
+        endVal = promptForEndingValue(true);
+    }
+    
     var strVal;
     var modFizz;
     var modBuzz;
     var strFizz = "Fizz";
     var strBuzz = "Buzz";
     
-    
-    for (var i = 1; i <= 100; i++) {
+    for (i=1; i <= endVal; i++) {
         strVal = "";
         modFizz = (0 == i % 3 ? true : false);
         modBuzz = (0 == i % 5 ? true : false);
@@ -40,4 +44,11 @@ function spaceMaker(i) {
     } else {
         return whitespace+whitespace+whitespace+whitespace+whitespace;
     }
+}
+
+function promptForEndingValue(doScoldUser=false) {
+    var strInstructions = "Enter a numeric value greater than zero."
+    var strScold = "YOU FAILED TO FOLLOW INSTRUCTIONS. PLEASE TRY AGAIN."
+    var strMessage = doScoldUser ? strScold + " " + strInstructions : strInstructions;
+    return parseInt(prompt(strMessage));
 }
