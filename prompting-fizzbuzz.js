@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 
 function main(endVal) {
-    while (0 >= endVal) {
+    while (0 >= endVal || isNaN(endVal)) {
         endVal = promptForEndingValue(true);
     }
     
